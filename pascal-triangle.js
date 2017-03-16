@@ -1,7 +1,7 @@
 ﻿var pascalTriangle = (function() {
     var mem = {
-        1: [ 1 ],
-        2: [ 1, 1 ]
+        0: [ 1 ],
+        1: [ 1, 1 ]
     };
 
     var get = function(n, all) {
@@ -10,7 +10,7 @@
         }
 
         var t = [];
-        for (var i = 1; i <= n; i++) {
+        for (var i = 0; i <= n; i++) {
             t.push(mem[i]);
         }
 
@@ -18,7 +18,7 @@
     };
 
     return function recursive(n, all) {
-        if (n < 1) {
+        if (n < 0) {
             return NaN;
         }
 
