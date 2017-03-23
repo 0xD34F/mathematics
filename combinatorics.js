@@ -66,8 +66,24 @@
         return next.pop();
     }
 
+    // числа Каталана
     function catalan(n) {
         return Math.round(combinations(2 * n, n) / (n + 1));
+    }
+
+    // перестановки с фиксированными элементами
+    function rencontres(n, k) {
+        if (n < k) {
+            return NaN;
+        }
+
+        var s = 0;
+
+        for (var i = 0; i <= n - k; i++) {
+            s += Math.pow(-1, i) / factorial(i);
+        }
+
+        return Math.round(s * factorial(n) / factorial(k));
     }
 
     return {
@@ -78,6 +94,7 @@
         stirling1: stirling1,
         stirling2: stirling2,
         bell: bell,
-        catalan: catalan
+        catalan: catalan,
+        rencontres: rencontres
     };
 })();
