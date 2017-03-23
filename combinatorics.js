@@ -66,6 +66,10 @@
         return next.pop();
     }
 
+    function catalan(n) {
+        return Math.round(combinations(2 * n, n) / (n + 1));
+    }
+
     return {
         factorial: factorial,
         combinations: combinations,
@@ -73,6 +77,7 @@
         permutations: permutations,
         stirling1: stirling1,
         stirling2: stirling2,
-        bell: bell
+        bell: bell,
+        catalan: catalan
     };
 })();
