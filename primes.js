@@ -1,8 +1,12 @@
 ﻿var Primes = (function() {
-    var primes = [2, 3, 5, 7, 11];
+    var primes = [2, 3];
 
     // проверка, является ли число простым
     function test(n) {
+        if (n < 2) {
+            return false;
+        }
+
         if (primes.indexOf(n) !== -1) {
             return true;
         }
