@@ -43,6 +43,9 @@
     function get(n) {
         var i = primes[primes.length - 1] + 1;
         while (primes.length < n) {
+            if (test(i)) {
+                primes.push(i);
+            }
             test(i++);
         }
 
