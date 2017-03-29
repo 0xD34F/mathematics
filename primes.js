@@ -46,7 +46,7 @@
             if (test(i)) {
                 primes.push(i);
             }
-            test(i++);
+            i++;
         }
 
         return primes.slice(0, n);
