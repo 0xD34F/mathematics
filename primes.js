@@ -26,7 +26,7 @@
             }
         }
 
-        for (i = p + 1; i < max; i++) {
+        for (i = p + 1; i <= max; i++) {
             if (test(i)) {
                 primes.push(i);
             }
