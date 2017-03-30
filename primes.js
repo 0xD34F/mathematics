@@ -56,20 +56,35 @@
     // разложение числа на простые множители
     function factorization(n) {
         var s = [],
-            i = 1,
-            p = null;
+            i = 0,
+            p = 0;
 
         while (n > 1) {
-            p = get(i);
             if (n % p === 0) {
                 s.push(p);
                 n /= p;
             } else {
-                i++;
+                p = get(++i);
             }
         }
 
         return s;
+    }
+
+    // является ли число полупростым
+    function isSemiprime(n) {
+        return factorization(n).length === 2;
+    }
+
+    // является ли число сфеническим
+    function isSphenic(n) {
+        var f = factorization(n);
+        return f.length === 3 && f[0] !== f[1] && f[1] !== f[2];
+    }
+
+    // является ли число гладким
+    function isSmooth(n, B) {
+        return factorization(n).pop() <= B;
     }
 
     return {
@@ -78,6 +93,9 @@
         },
         test: test,
         get: get,
-        factorization: factorization
+        factorization: factorization,
+        isSemiprime: isSemiprime,
+        isSphenic: isSphenic,
+        isSmooth: isSmooth
     };
 })();
