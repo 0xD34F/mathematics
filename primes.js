@@ -39,9 +39,10 @@
         return true;
     }
 
-    // получение n первых простых чисел
-    function get(n) {
+    // получение n-ого или n первых простых чисел
+    function get(n, all) {
         var i = primes[primes.length - 1] + 1;
+
         while (primes.length < n) {
             if (test(i)) {
                 primes.push(i);
@@ -49,7 +50,26 @@
             i++;
         }
 
-        return primes.slice(0, n);
+        return all ? primes.slice(0, n) : primes[n - 1];
+    }
+
+    // разложение числа на простые множители
+    function factorization(n) {
+        var s = [],
+            i = 1,
+            p = null;
+
+        while (n > 1) {
+            p = get(i);
+            if (n % p === 0) {
+                s.push(p);
+                n /= p;
+            } else {
+                i++;
+            }
+        }
+
+        return s;
     }
 
     return {
@@ -57,6 +77,7 @@
             return primes.slice(0);
         },
         test: test,
-        get: get
+        get: get,
+        factorization: factorization
     };
 })();
