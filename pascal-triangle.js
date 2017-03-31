@@ -1,28 +1,19 @@
 ﻿var pascalTriangle = (function() {
-    var mem = {
-        0: [ 1 ],
-        1: [ 1, 1 ]
-    };
+    var mem = [
+        [ 1 ],
+        [ 1, 1 ]
+    ];
 
     var get = function(n, all) {
-        if (!all) {
-            return mem[n];
-        }
-
-        var t = [];
-        for (var i = 0; i <= n; i++) {
-            t.push(mem[i]);
-        }
-
-        return t;
+        return all ? mem.slice(0, n) : mem[n];
     };
 
     return function recursive(n, all) {
         if (n < 0) {
-            return NaN;
+            return null;
         }
 
-        if (mem.hasOwnProperty(n)) {
+        if (mem.length >= n + 1) {
             return get(n, all);
         }
 
@@ -35,7 +26,7 @@
 
         s.push(1);
 
-        mem[n] = s;
+        mem.push(s);
 
         return get(n, all);
     }
