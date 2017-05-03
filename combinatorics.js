@@ -88,8 +88,8 @@
 
     // числа Эйлера первого рода
     function eulerian1(n, k) {
-        if (n <= k) {
-            return NaN;
+        if (n < k) {
+            return 0;
         }
 
         var s = 0;
@@ -99,6 +99,19 @@
         }
 
         return s;
+    }
+
+    // числа Эйлера второго рода
+    function eulerian2(n, k) {
+        if (n < k) {
+            return 0;
+        }
+
+        if (k == 0) {
+            return 1;
+        }
+
+        return (2 * n - k - 1) * eulerian2(n - 1, k - 1) + (k + 1) * eulerian2(n - 1, k);
     }
 
     return {
@@ -111,6 +124,7 @@
         bell: bell,
         catalan: catalan,
         eulerian1: eulerian1,
+        eulerian2: eulerian2,
         rencontres: rencontres
     };
 })();
