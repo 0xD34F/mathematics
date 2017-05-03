@@ -86,6 +86,21 @@
         return Math.round(s * factorial(n) / factorial(k));
     }
 
+    // числа Эйлера первого рода
+    function eulerian1(n, k) {
+        if (n <= k) {
+            return NaN;
+        }
+
+        var s = 0;
+
+        for (var i = 0; i < k + 1; i++) {
+            s += Math.pow(-1, i) * Math.pow(k + 1 - i, n) * combinations(n + 1, i);
+        }
+
+        return s;
+    }
+
     return {
         factorial: factorial,
         combinations: combinations,
@@ -95,6 +110,7 @@
         stirling2: stirling2,
         bell: bell,
         catalan: catalan,
+        eulerian1: eulerian1,
         rencontres: rencontres
     };
 })();
