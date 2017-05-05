@@ -1,7 +1,7 @@
 ﻿var Numbers = (function() {
     var primes = [2, 3];
 
-    // проверка, является ли число простым
+    // является ли число простым
     function isPrime(n) {
         if (n < 2) {
             return false;
@@ -115,6 +115,11 @@
         return a * b / gcd(a, b);
     }
 
+    // являются ли числа взаимно простыми
+    function isCoprime(a, b) {
+        return gcd(a, b) === 1;
+    }
+
     return {
         _list: function() {
             return primes.slice(0);
@@ -126,6 +131,7 @@
         isPrime: isPrime,
         isSemiprime: isSemiprime,
         isSphenic: isSphenic,
-        isSmooth: isSmooth
+        isSmooth: isSmooth,
+        isCoprime: isCoprime
     };
 })();
