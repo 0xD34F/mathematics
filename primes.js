@@ -54,7 +54,7 @@
     }
 
     // разложение числа на простые множители
-    function factorization(n) {
+    function factorization(n, grouped) {
         var s = [],
             i = 0,
             p = 0;
@@ -66,6 +66,14 @@
             } else {
                 p = get(++i);
             }
+        }
+
+        if (grouped) {
+            var g = {};
+            for (i = 0; i < s.length; i++) {
+                g[s[i]] = (g[s[i]] || 0) + 1;
+            }
+            return g;
         }
 
         return s;
@@ -87,12 +95,28 @@
         return factorization(n).pop() <= B;
     }
 
+    // наибольший общий делитель
+    function gcd(a, b) {
+        var fa = factorization(a, true),
+            fb = factorization(b, true);
+
+        var d = 1;
+        for (var i in fa) {
+            if (fb[i]) {
+                d *= Math.pow(i, (fa[i] < fb[i]) ? fa[i] : fb[i]);
+            }
+        }
+
+        return d;
+    }
+
     return {
         _list: function() {
             return primes.slice(0);
         },
         test: test,
         get: get,
+        gcd: gcd,
         factorization: factorization,
         isSemiprime: isSemiprime,
         isSphenic: isSphenic,
