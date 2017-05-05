@@ -120,12 +120,25 @@
         return gcd(a, b) === 1;
     }
 
+    // радикал числа
+    function radical(n) {
+        var f = factorization(n, true),
+            r = 1;
+
+        for (var i in f) {
+            r *= i;
+        }
+
+        return r;
+    }
+
     return {
         _list: function() {
             return primes.slice(0);
         },
         gcd: gcd,
         lcm: lcm,
+        rad: radical,
         factorization: factorization,
         getPrime: getPrime,
         isPrime: isPrime,
