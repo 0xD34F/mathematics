@@ -110,11 +110,17 @@
         return d;
     }
 
+    // наименьшее общее кратное
+    function lcm(a, b) {
+        return a * b / gcd(a, b);
+    }
+
     return {
         _list: function() {
             return primes.slice(0);
         },
         gcd: gcd,
+        lcm: lcm,
         factorization: factorization,
         getPrime: getPrime,
         isPrime: isPrime,
