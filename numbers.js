@@ -1,8 +1,8 @@
-﻿var Primes = (function() {
+﻿var Numbers = (function() {
     var primes = [2, 3];
 
     // проверка, является ли число простым
-    function test(n) {
+    function isPrime(n) {
         if (n < 2) {
             return false;
         }
@@ -27,7 +27,7 @@
         }
 
         for (i = p + 1; i <= max; i++) {
-            if (test(i)) {
+            if (isPrime(i)) {
                 primes.push(i);
             }
 
@@ -40,11 +40,11 @@
     }
 
     // получение n-ого или n первых простых чисел
-    function get(n, all) {
+    function getPrime(n, all) {
         var i = primes[primes.length - 1] + 1;
 
         while (primes.length < n) {
-            if (test(i)) {
+            if (isPrime(i)) {
                 primes.push(i);
             }
             i++;
@@ -64,7 +64,7 @@
                 s.push(p);
                 n /= p;
             } else {
-                p = get(++i);
+                p = getPrime(++i);
             }
         }
 
@@ -114,10 +114,10 @@
         _list: function() {
             return primes.slice(0);
         },
-        test: test,
-        get: get,
         gcd: gcd,
         factorization: factorization,
+        getPrime: getPrime,
+        isPrime: isPrime,
         isSemiprime: isSemiprime,
         isSphenic: isSphenic,
         isSmooth: isSmooth
