@@ -1,4 +1,4 @@
-﻿/* генератор линейных рекуррентных последовательностей
+﻿/* линейные рекуррентные последовательности
  *
  * числа Фибоначчи : LRS({ 1: 1, 2: 1 }, [ 0, 1 ])
  * числа Люка : LRS({ 1: 1, 2: 1 }, [ 2, 1 ])
@@ -8,23 +8,22 @@
 var LRS = function(form, start) {
     var mem = start.slice(0);
 
-    return function recursive(n) {
+    // получение n-ого элемента или n первых элементов последовательности
+    return function recursive(n, all) {
         if (n < 0) {
             return NaN;
         }
 
-        if (mem.length > n) {
-            return mem[n];
+        if (mem.length <= n) {
+            var s = 0;
+
+            for (var i in form) {
+                s += recursive(n - i) * form[i];
+            }
+
+            mem.push(s);
         }
 
-        var s = 0;
-
-        for (var i in form) {
-            s += recursive(n - i) * form[i];
-        }
-
-        mem.push(s);
-
-        return s;
+        return all ? mem.slice(0, n) : mem[n];
     }
 };
