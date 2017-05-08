@@ -95,6 +95,18 @@
         return factorization(n).pop() <= B;
     }
 
+    // является ли число свободным от квадратов
+    function isSquareFree(n) {
+        var f = factorization(n, true);
+        for (var i in f) {
+            if (f[i] > 1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     // наибольший общий делитель
     function gcd(a, b) {
         var fa = factorization(a, true),
@@ -133,9 +145,6 @@
     }
 
     return {
-        _list: function() {
-            return primes.slice(0);
-        },
         gcd: gcd,
         lcm: lcm,
         rad: radical,
@@ -145,6 +154,7 @@
         isSemiprime: isSemiprime,
         isSphenic: isSphenic,
         isSmooth: isSmooth,
+        isSquareFree: isSquareFree,
         isCoprime: isCoprime
     };
 })();
