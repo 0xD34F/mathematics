@@ -95,6 +95,18 @@
         return factorization(n).pop() <= B;
     }
 
+    // является ли число полнократным
+    function isPowerful(n) {
+        var f = factorization(n, true);
+        for (var i in f) {
+            if (f[i] < 2) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     // является ли число свободным от квадратов
     function isSquareFree(n) {
         var f = factorization(n, true);
@@ -154,6 +166,7 @@
         isSemiprime: isSemiprime,
         isSphenic: isSphenic,
         isSmooth: isSmooth,
+        isPowerful: isPowerful,
         isSquareFree: isSquareFree,
         isCoprime: isCoprime
     };
