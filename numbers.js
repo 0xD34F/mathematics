@@ -85,46 +85,24 @@
             return null;
         }
 
-        var f = factorization(n, true),
-            k = Object.keys(f),
-            v = {},
+        var max = Math.sqrt(n),
             d = [];
-
-        for (var i in f) {
-            v[i] = 0;
-        }
-
-        var x = null;
-        while (x !== n) {
             x = 1;
-            for (i in v) {
-                x *= Math.pow(i, v[i]);
-            }
 
-            var up = false;
-            for (i = 0; i < k.length; i++) {
-                var key = k[i];
-
-                if (i === 0 || up === true) {
-                    v[key]++;
-                }
-
-                if (v[key] > f[key]) {
-                    v[key] = 0;
-                    up = true;
-                } else {
-                    up = false;
+        while (x <= max) {
+            if (n % x === 0) {
+                d.push(x);
+                if (x !== max) {
+                    d.push(n / x);
                 }
             }
 
-            d.push(x);
+            x++;
         }
 
-        d.sort(function(a, b) {
+        return d.sort(function(a, b) {
             return a - b;
         });
-
-        return d;
     }
 
     // является ли число полупростым
