@@ -79,6 +79,54 @@
         return s;
     }
 
+    // собственные делители числа
+    function divisors(n) {
+        if (n < 1) {
+            return null;
+        }
+
+        var f = factorization(n, true),
+            k = Object.keys(f),
+            v = {},
+            d = [];
+
+        for (var i in f) {
+            v[i] = 0;
+        }
+
+        var x = null;
+        while (x !== n) {
+            x = 1;
+            for (i in v) {
+                x *= Math.pow(i, v[i]);
+            }
+
+            var up = false;
+            for (i = 0; i < k.length; i++) {
+                var key = k[i];
+
+                if (i === 0 || up === true) {
+                    v[key]++;
+                }
+
+                if (v[key] > f[key]) {
+                    v[key] = 0;
+                    up = true;
+                } else {
+                    up = false;
+                }
+            }
+
+            d.push(x);
+        }
+
+        d.sort(function(a, b) {
+            return a - b;
+        });
+
+        return d;
+    }
+
     // является ли число полупростым
     function isSemiprime(n) {
         return factorization(n).length === 2;
@@ -161,6 +209,7 @@
         lcm: lcm,
         rad: radical,
         factorization: factorization,
+        divisors: divisors,
         getPrime: getPrime,
         isPrime: isPrime,
         isSemiprime: isSemiprime,
