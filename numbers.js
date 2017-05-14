@@ -57,7 +57,7 @@
     function factorization(n, grouped) {
         var s = [],
             i = 0,
-            p = 0;
+            p = getPrime(1);
 
         while (n > 1) {
             if (n % p === 0) {
