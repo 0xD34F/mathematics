@@ -3,7 +3,7 @@
 
     // является ли число простым
     function isPrime(n) {
-        if (n < 2) {
+        if (n < primes[0]) {
             return false;
         }
 
@@ -26,7 +26,7 @@
             }
         }
 
-        for (i = p + 1; i <= max; i++) {
+        for (i = p + 2; i <= max; i += 2) {
             if (isPrime(i)) {
                 primes.push(i);
             }
@@ -41,13 +41,13 @@
 
     // получение n-ого или n первых простых чисел
     function getPrime(n, all) {
-        var i = primes[primes.length - 1] + 1;
+        var i = primes[primes.length - 1] + 2;
 
         while (primes.length < n) {
             if (isPrime(i)) {
                 primes.push(i);
             }
-            i++;
+            i += 2;
         }
 
         return all ? primes.slice(0, n) : primes[n - 1];
