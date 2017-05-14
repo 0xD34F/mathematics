@@ -182,6 +182,15 @@
         return r;
     }
 
+    // функция Мёбиуса
+    function mobius(n) {
+        if (!isSquareFree(n)) {
+            return 0;
+        }
+
+        return (factorization(n).length & 1) ? -1 : 1;
+    }
+
     return {
         gcd: gcd,
         lcm: lcm,
@@ -195,6 +204,7 @@
         isSmooth: isSmooth,
         isPowerful: isPowerful,
         isSquareFree: isSquareFree,
-        isCoprime: isCoprime
+        isCoprime: isCoprime,
+        mobius: mobius
     };
 })();
