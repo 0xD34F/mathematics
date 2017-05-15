@@ -114,6 +114,15 @@
         return (2 * n - k - 1) * eulerian2(n - 1, k - 1) + (k + 1) * eulerian2(n - 1, k);
     }
 
+    // числа Деланноя
+    function delannoy(n, k) {
+        if (n === 0 || k === 0) {
+            return 1;
+        }
+
+        return delannoy(n - 1, k) + delannoy(n - 1, k - 1) + delannoy(n, k - 1);
+    }
+
     return {
         factorial: factorial,
         combinations: combinations,
@@ -125,6 +134,7 @@
         catalan: catalan,
         eulerian1: eulerian1,
         eulerian2: eulerian2,
+        delannoy: delannoy,
         rencontres: rencontres
     };
 })();
