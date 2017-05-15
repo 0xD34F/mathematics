@@ -105,9 +105,14 @@
         });
     }
 
+    // является ли число почти простым
+    function isAlmostPrime(n, K) {
+        return factorization(n).length === K;
+    }
+
     // является ли число полупростым
     function isSemiprime(n) {
-        return factorization(n).length === 2;
+        return isAlmostPrime(n, 2);
     }
 
     // является ли число сфеническим
@@ -199,6 +204,7 @@
         divisors: divisors,
         getPrime: getPrime,
         isPrime: isPrime,
+        isAlmostPrime: isAlmostPrime,
         isSemiprime: isSemiprime,
         isSphenic: isSphenic,
         isSmooth: isSmooth,
