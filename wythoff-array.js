@@ -1,5 +1,11 @@
 ﻿// таблица Витхоффа
-var wythoffArray = (function() {
+(function(factory) {
+    if (typeof window === 'undefined') {
+        module.exports = factory();
+    } else {
+        window.wythoffArray = factory();
+    }
+}(function() {
     // золотое сечение
     var gr = (1 + Math.sqrt(5)) / 2;
 
@@ -20,4 +26,4 @@ var wythoffArray = (function() {
 
         return t;
     };
-})();
+}));

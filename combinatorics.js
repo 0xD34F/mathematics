@@ -1,4 +1,4 @@
-﻿var Combinatorics = (function() {
+﻿(function(exports) {
     function factorial(n) {
         var f = 1;
 
@@ -123,18 +123,18 @@
         return delannoy(n - 1, k) + delannoy(n - 1, k - 1) + delannoy(n, k - 1);
     }
 
-    return {
-        factorial: factorial,
-        combinations: combinations,
-        combinationsR: combinationsR,
-        permutations: permutations,
-        stirling1: stirling1,
-        stirling2: stirling2,
-        bell: bell,
-        catalan: catalan,
-        eulerian1: eulerian1,
-        eulerian2: eulerian2,
-        delannoy: delannoy,
-        rencontres: rencontres
-    };
-})();
+    Object.assign(exports, {
+        factorial,
+        combinations,
+        combinationsR,
+        permutations,
+        stirling1,
+        stirling2,
+        bell,
+        catalan,
+        eulerian1,
+        eulerian2,
+        delannoy,
+        rencontres
+    });
+})(typeof window === 'undefined' ? module.exports : (window.combinatorics = {}));

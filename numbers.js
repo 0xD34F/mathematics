@@ -1,4 +1,4 @@
-﻿var Numbers = (function() {
+﻿(function(exports) {
     var primes = [2, 3];
 
     // является ли число простым
@@ -196,21 +196,21 @@
         return (factorization(n).length & 1) ? -1 : 1;
     }
 
-    return {
-        gcd: gcd,
-        lcm: lcm,
-        rad: radical,
-        factorization: factorization,
-        divisors: divisors,
-        getPrime: getPrime,
-        isPrime: isPrime,
-        isAlmostPrime: isAlmostPrime,
-        isSemiprime: isSemiprime,
-        isSphenic: isSphenic,
-        isSmooth: isSmooth,
-        isPowerful: isPowerful,
-        isSquareFree: isSquareFree,
-        isCoprime: isCoprime,
-        mobius: mobius
-    };
-})();
+    Object.assign(exports, {
+        gcd,
+        lcm,
+        radical,
+        factorization,
+        divisors,
+        getPrime,
+        isPrime,
+        isAlmostPrime,
+        isSemiprime,
+        isSphenic,
+        isSmooth,
+        isPowerful,
+        isSquareFree,
+        isCoprime,
+        mobius
+    });
+})(typeof window === 'undefined' ? module.exports : (window.numbers = {}));

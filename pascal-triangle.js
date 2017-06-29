@@ -1,5 +1,11 @@
 ﻿// треугольник Паскаля
-var pascalTriangle = (function() {
+(function(factory) {
+    if (typeof window === 'undefined') {
+        module.exports = factory();
+    } else {
+        window.pascalTriangle = factory();
+    }
+}(function() {
     var mem = [
         [ 1 ]
     ];
@@ -38,4 +44,4 @@ var pascalTriangle = (function() {
 
         return get(n, all);
     }
-})();
+}));
