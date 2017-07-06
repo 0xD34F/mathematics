@@ -1,13 +1,22 @@
 ﻿(function(exports) {
-    function factorial(n) {
-        var f = 1;
+    var factorial = (function() {
+        var mem = [1];
 
-        for (var i = 1; i <= n; i++) {
-            f *= i;
+        return function(n) {
+            var len = mem.length;
+            if (len > n) {
+                return mem[n];
+            }
+
+            var f = mem[len - 1];
+
+            for (var i = len; i <= n; i++) {
+                mem.push(f *= i);
+            }
+
+            return f;
         }
-
-        return f;
-    }
+    })();
 
     // сочетания
     function combinations(n, k) {
