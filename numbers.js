@@ -189,6 +189,11 @@
         return (factorization(n).length & 1) ? -1 : 1;
     }
 
+    // функция Мертенса
+    function mertens(n) {
+        return [...Array(n)].reduce((p, c, i) => p + mobius(i + 1), 0);
+    }
+
     // аликвотная сумма
     function aliquotSum(n) {
         return divisors(n).reduce((p, c) => p + c) - n;
@@ -234,6 +239,7 @@
         isDeficient,
         isAbundant,
         isAmicable,
-        mobius
+        mobius,
+        mertens
     });
 })(typeof window === 'undefined' ? module.exports : (window.numbers = {}));
