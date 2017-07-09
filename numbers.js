@@ -189,6 +189,11 @@
         return (factorization(n).length & 1) ? -1 : 1;
     }
 
+    // аликвотная сумма
+    function aliquotSum(n) {
+        return divisors(n).reduce((p, c) => p + c) - n;
+    }
+
     Object.assign(exports, {
         gcd,
         lcm,
@@ -204,6 +209,7 @@
         isPowerful,
         isSquareFree,
         isCoprime,
+        aliquotSum,
         mobius
     });
 })(typeof window === 'undefined' ? module.exports : (window.numbers = {}));
