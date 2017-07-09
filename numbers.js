@@ -176,15 +176,8 @@
     }
 
     // радикал числа
-    function radical(n) {
-        var f = factorization(n, true),
-            r = 1;
-
-        for (var i in f) {
-            r *= i;
-        }
-
-        return r;
+    function rad(n) {
+        return Object.keys(factorization(n, true)).reduce((p, c) => p * c, 1);
     }
 
     // функция Мёбиуса
@@ -199,7 +192,7 @@
     Object.assign(exports, {
         gcd,
         lcm,
-        radical,
+        rad,
         factorization,
         divisors,
         getPrime,
