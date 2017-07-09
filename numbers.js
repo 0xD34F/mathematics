@@ -194,6 +194,26 @@
         return divisors(n).reduce((p, c) => p + c) - n;
     }
 
+    // является ли число совершенным
+    function isPerfect(n) {
+        return aliquotSum(n) === n;
+    }
+
+    // является ли число недостаточным
+    function isDeficient(n) {
+        return aliquotSum(n) < n;
+    }
+
+    // является ли число избыточным
+    function isAbundant(n) {
+        return aliquotSum(n) > n;
+    }
+
+    // являются ли числа дружественными
+    function isAmicable(a, b) {
+        return (aliquotSum(a) === b) && (aliquotSum(b) === a);
+    }
+
     Object.assign(exports, {
         gcd,
         lcm,
@@ -210,6 +230,10 @@
         isSquareFree,
         isCoprime,
         aliquotSum,
+        isPerfect,
+        isDeficient,
+        isAbundant,
+        isAmicable,
         mobius
     });
 })(typeof window === 'undefined' ? module.exports : (window.numbers = {}));
