@@ -62,5 +62,12 @@
         return Complex(this.re, -this.im);
     };
 
+    Complex.prototype.sqrt = function() {
+        var abs = this.abs(),
+            sign = this.im >= 0 ? 1 : -1;
+
+        return Complex(Math.sqrt((abs + this.re) * 0.5), sign * Math.sqrt((abs - this.re) * 0.5));
+    };
+
     return Complex;
 }));
