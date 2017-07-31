@@ -46,5 +46,21 @@
         return Complex((this.re * c.re + this.im * c.im) / d, (this.im * c.re - this.re * c.im) / d);
     });
 
+    Complex.prototype.pow = function(n) {
+        return n > 1 ? this.mul(this.pow(n - 1)) : this;
+    };
+
+    Complex.prototype.abs = function() {
+        return Math.sqrt(this.re * this.re + this.im * this.im);
+    };
+
+    Complex.prototype.arg = function() {
+        return Math.atan2(this.im, this.re);
+    };
+
+    Complex.prototype.conj = function() {
+        return Complex(this.re, -this.im);
+    };
+
     return Complex;
 }));
