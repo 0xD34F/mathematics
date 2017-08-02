@@ -59,7 +59,17 @@
         }),
         pow: function(n) {
             return n > 1 ? this.mul(this.pow(n - 1)) : this;
-        }
+        },
+        /*
+        формула Муавра - быстрее, но менее точно:
+        (2 + 2i).pow(2) = 4.898587196589414e-16 + 8.000000000000002i вместо 8i
+
+        pow: function(n) {
+            var absN = Math.pow(this.abs, n),
+                argN = n * this.arg;
+
+            return Complex(absN * Math.cos(argN), absN * Math.sin(argN));
+        }*/
     };
 
     return Complex;
