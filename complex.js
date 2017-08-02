@@ -25,48 +25,41 @@
         };
     }
 
-    Complex.prototype.equals = complexParam(function(c) {
-        return (this.re === c.re) && (this.im === c.im);
-    });
+    Complex.prototype = {
+        get abs() {
+            return Math.sqrt(this.re * this.re + this.im * this.im);
+        },
+        get arg() {
+            return Math.atan2(this.im, this.re);
+        },
+        get conj() {
+            return Complex(this.re, -this.im);
+        },
+        get sqrt() {
+            var abs = this.abs,
+                sign = this.im >= 0 ? 1 : -1;
 
-    Complex.prototype.add = complexParam(function(c) {
-        return Complex(this.re + c.re, this.im + c.im);
-    });
-
-    Complex.prototype.sub = complexParam(function(c) {
-        return Complex(this.re - c.re, this.im - c.im);
-    });
-
-    Complex.prototype.mul = complexParam(function(c) {
-        return Complex(this.re * c.re - this.im * c.im, this.im * c.re + this.re * c.im);
-    });
-
-    Complex.prototype.div = complexParam(function(c) {
-        var d = c.re * c.re + c.im * c.im;
-        return Complex((this.re * c.re + this.im * c.im) / d, (this.im * c.re - this.re * c.im) / d);
-    });
-
-    Complex.prototype.pow = function(n) {
-        return n > 1 ? this.mul(this.pow(n - 1)) : this;
-    };
-
-    Complex.prototype.abs = function() {
-        return Math.sqrt(this.re * this.re + this.im * this.im);
-    };
-
-    Complex.prototype.arg = function() {
-        return Math.atan2(this.im, this.re);
-    };
-
-    Complex.prototype.conj = function() {
-        return Complex(this.re, -this.im);
-    };
-
-    Complex.prototype.sqrt = function() {
-        var abs = this.abs(),
-            sign = this.im >= 0 ? 1 : -1;
-
-        return Complex(Math.sqrt((abs + this.re) * 0.5), sign * Math.sqrt((abs - this.re) * 0.5));
+            return Complex(Math.sqrt((abs + this.re) * 0.5), sign * Math.sqrt((abs - this.re) * 0.5));
+        },
+        equals: complexParam(function(c) {
+            return (this.re === c.re) && (this.im === c.im);
+        }),
+        add: complexParam(function(c) {
+            return Complex(this.re + c.re, this.im + c.im);
+        }),
+        sub: complexParam(function(c) {
+            return Complex(this.re - c.re, this.im - c.im);
+        }),
+        mul: complexParam(function(c) {
+            return Complex(this.re * c.re - this.im * c.im, this.im * c.re + this.re * c.im);
+        }),
+        div: complexParam(function(c) {
+            var d = c.re * c.re + c.im * c.im;
+            return Complex((this.re * c.re + this.im * c.im) / d, (this.im * c.re - this.re * c.im) / d);
+        }),
+        pow: function(n) {
+            return n > 1 ? this.mul(this.pow(n - 1)) : this;
+        }
     };
 
     return Complex;
