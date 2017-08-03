@@ -26,6 +26,32 @@
     }
 
     Complex.prototype = {
+        toString: function() {
+            var r = this.re,
+                i = this.im,
+                str = '';
+
+            if (isNaN(r) || isNaN(i)) {
+                return 'NaN';
+            }
+
+            if (r !== 0) {
+                str += r;
+            }
+
+            if (i !== 0) {
+                if (r) {
+                    str += i > 0 ? ' + ' : ' - '
+                } else if (i < 0) {
+                    str += '-';
+                }
+
+                i = Math.abs(i);
+                str += i === 1 ? 'i' : i + 'i';
+            }
+
+            return str || '0';
+        },
         get abs() {
             return Math.sqrt(this.re * this.re + this.im * this.im);
         },
