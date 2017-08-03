@@ -70,6 +70,13 @@
 
             return Complex(absN * Math.cos(argN), absN * Math.sin(argN));
         }*/
+        nthRoots: function(n) {
+            var absN = Math.pow(this.abs, 1 / n),
+                argN = this.arg / n,
+                pi2_n = Math.PI * 2 / n;
+
+            return [...Array(n)].map((k, i) => Complex(absN * Math.cos(argN + pi2_n * i), absN * Math.sin(argN + pi2_n * i)));
+        }
     };
 
     return Complex;
