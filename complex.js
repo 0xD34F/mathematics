@@ -13,8 +13,8 @@
             im = r.im;
         }
 
-        c.re = re;
-        c.im = im;
+        c.re = re || 0;
+        c.im = im || 0;
 
         return c;
     }
