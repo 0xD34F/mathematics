@@ -19,6 +19,7 @@
 
         // получение n-ого элемента или n первых элементов последовательности
         return function recursive(n, all) {
+            n |= 0;
             if (n < 0) {
                 return NaN;
             }

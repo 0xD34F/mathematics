@@ -25,6 +25,7 @@
     };
 
     return function recursive(n, all) {
+        n |= 0;
         if (n < 0) {
             return null;
         }

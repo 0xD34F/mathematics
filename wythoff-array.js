@@ -16,6 +16,12 @@
     }
 
     return function(m, n) {
+        m |= 0;
+        n |= 0;
+        if (m < 1 || n < 1) {
+            return null;
+        }
+
         var t = new Array(m);
         for (var i = 0; i < m; i++) {
             t[i] = new Array(n);
