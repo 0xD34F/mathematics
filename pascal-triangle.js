@@ -12,16 +12,9 @@
 
     // .slice - чтобы нельзя было испортить данные извне
     var get = function(n, all) {
-        if (!all) {
-            return mem[n].slice(0);
-        }
-
-        var t = [];
-        for (var i = 0; i < n; i++) {
-            t.push(mem[i].slice(0));
-        }
-
-        return t;
+        return all
+            ? mem.slice(0, n).map(line => line.slice(0))
+            : mem[n].slice(0);
     };
 
     return function recursive(n, all) {
