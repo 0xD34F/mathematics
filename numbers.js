@@ -150,6 +150,12 @@
         return true;
     }
 
+    // является ли число прямоугольным
+    function isPronic(n) {
+        var r = Math.sqrt(n) | 0;
+        return r * (r + 1) === n;
+    }
+
     // наибольший общий делитель
     function gcd(a, b) {
         var fa = factorization(a, true),
@@ -233,6 +239,7 @@
         isSmooth,
         isPowerful,
         isSquareFree,
+        isPronic,
         isCoprime,
         aliquotSum,
         isPerfect,
