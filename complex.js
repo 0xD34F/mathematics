@@ -5,16 +5,24 @@
         window.Complex = factory();
     }
 }(function() {
-    function Complex(re, im) {
+    function Complex(a, b) {
         var c = Object.create(Complex.prototype);
 
-        if (re instanceof Complex) {
-            re = r.re;
-            im = r.im;
+        if (a instanceof Object) {
+            if ('re' in a && 'im' in a) {
+                b = a.im;
+                a = a.re;
+            } else if ('abs' in a && 'arg' in a) {
+                b = a.abs * Math.sin(a.arg);
+                a = a.abs * Math.cos(a.arg);
+            } else if ('r' in a && 'phi' in a) {
+                b = a.r * Math.sin(a.phi);
+                a = a.r * Math.cos(a.phi);
+            }
         }
 
-        c.re = re || 0;
-        c.im = im || 0;
+        c.re = a || 0;
+        c.im = b || 0;
 
         return c;
     }
