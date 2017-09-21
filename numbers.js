@@ -148,10 +148,27 @@
         return true;
     }
 
+    // является ли число квадратным
+    function isSquare(n) {
+        var r = Math.sqrt(n) | 0;
+        return r * r === n;
+    }
+
     // является ли число прямоугольным
     function isPronic(n) {
         var r = Math.sqrt(n) | 0;
         return r * (r + 1) === n;
+    }
+
+    // является ли число треугольным
+    function isTriangular(n) {
+        return isPronic(n * 2);
+    }
+
+    // является ли число шестиугольным
+    function isHexagonal(n) {
+        var r = (Math.sqrt(8 * n + 1) + 1) / 4;
+        return r === (r | 0);
     }
 
     // наибольший общий делитель
@@ -251,7 +268,10 @@
         isSmooth,
         isPowerful,
         isSquareFree,
+        isSquare,
         isPronic,
+        isTriangular,
+        isHexagonal,
         isCoprime,
         aliquotSum,
         isPerfect,
