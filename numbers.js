@@ -208,6 +208,20 @@
         return aliquotSum(n) === n;
     }
 
+    // является ли число полусовершенным
+    function isSemiperfect(n) {
+        var d = divisors(n).slice(0, -1),
+            m = Math.pow(2, d.length);
+
+        for (var s = 1; s < m; s++) {
+            if (d.reduce((p, c, i) => p + ((s & (1 << i)) ? c : 0), 0) === n) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // является ли число недостаточным
     function isDeficient(n) {
         return aliquotSum(n) < n;
@@ -241,6 +255,7 @@
         isCoprime,
         aliquotSum,
         isPerfect,
+        isSemiperfect,
         isDeficient,
         isAbundant,
         isAmicable,
