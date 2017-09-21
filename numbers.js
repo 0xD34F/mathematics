@@ -100,9 +100,7 @@
             x++;
         }
 
-        return d.sort(function(a, b) {
-            return a - b;
-        });
+        return d.sort((a, b) => a - b);
     }
 
     // является ли число почти простым
