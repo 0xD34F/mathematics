@@ -33,7 +33,7 @@
         };
     }
 
-    Complex.prototype = {
+    Object.assign(Complex.prototype, {
         toString: function() {
             var r = this.re,
                 i = this.im,
@@ -111,7 +111,7 @@
 
             return [...Array(n)].map((k, i) => Complex(absN * Math.cos(argN + pi2_n * i), absN * Math.sin(argN + pi2_n * i)));
         }
-    };
+    });
 
     return Complex;
 }));
