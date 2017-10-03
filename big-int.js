@@ -22,7 +22,7 @@
 
         b.sign = a[0] === '-';
         b.val = b.sign ? a.slice(1) : a;
-
+// to-do: fix '-0'
         return b;
     }
 
@@ -109,7 +109,35 @@
         }),
         sub: function(x) {
             return this.add(BigInt(x).neg());
-        }
+        },
+        mul: BigIntParam(function(x) {
+            var a = this.val.split('').reverse(),
+                b = x.val.split('').reverse(),
+                sign = this.sign !== x.sign,
+                sum = BigInt(0);
+
+            for (var i = 0; i < a.length; i++) {
+                var r = [],
+                    p = 0,
+                    ai = +a[i];
+
+                for (var j = 0; j < b.length; j++) {
+                    var bj = +b[j],
+                        m = ai * bj + p;
+
+                    r.unshift(m % 10);
+                    p = (m / 10) | 0;
+                }
+
+                if (p) {
+                    r.unshift(p);
+                }
+
+                sum = sum.add(r.concat(Array(i).fill('0')).join(''));
+            }
+
+            return sign ? sum.neg() : sum;
+        })
     });
 
     return BigInt;
