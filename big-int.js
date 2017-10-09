@@ -137,6 +137,37 @@
             }
 
             return sign ? sum.neg() : sum;
+        }),
+        div: BigIntParam(function(x) {
+            var pos = x.val.length,
+                divisor = x.abs(),
+                dividend = BigInt(this.val.slice(0, pos)),
+                sign = this.sign !== x.sign,
+                result = [];
+
+            if (dividend.lt(divisor)) {
+                dividend.val += this.val[pos++] || '';
+            }
+
+            while (pos <= this.val.length) {
+                var quotient = null;
+                for (var i = 9; ; i--) {
+                    quotient = divisor.mul(i);
+                    if (quotient.lte(dividend)) {
+                        break;
+                    }
+                }
+
+                result.push(i);
+                dividend = dividend.sub(quotient);
+                if (dividend.eq(0)) {
+                    dividend.val = this.val[pos++] || '';
+                } else {
+                    dividend.val += this.val[pos++] || '';
+                }
+            }
+
+            return BigInt((sign ? '-' : '') + (result.join('') || '0'));
         })
     });
 
